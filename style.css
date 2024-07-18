@@ -1,0 +1,187 @@
+
+body {
+  font-family: 'Helvetica Neue', sans-serif, sans-serif;
+  background-color: #202020; /* Soft off-white background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 450px;
+  margin-bottom: 20px;
+  background-color: #404040; /* Dark background for header */
+  padding: 10px 20px; /* Add some padding to the header */
+  border-radius: 10px; /* Rounded corners for header */
+  color: white; /* White text color for header */
+}
+
+.game-title {
+  font-size: 2em;
+  font-weight: bold; /* Make the title bold */
+}
+
+.reload-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white; /* White reload button */
+}
+
+.score-container {
+  display: flex;
+  gap: 20px;
+}
+
+.score,
+.best {
+  background-color: #202020; /* Darker background for score */
+  padding: 8px 15px;
+  border-radius: 5px;
+  color: white; /* White score text */
+}
+
+#game-board {
+  background-color: #404040; /* Dark background for the game board */
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 10px;
+}
+
+.tile {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  transition: all 0.1s ease;
+}
+
+/* Example tile colors */
+.tile-2 { background-color: #eee4da; color: #776e65; }
+.tile-4 { background-color: #ede0c8; color: #776e65; }
+.tile-8 { background-color: #f2b179; color: #f9f6f2; }
+.tile-16 { background-color: #f59563; color: #f9f6f2; }
+.tile-32 { background-color: #f67c5f; color: #f9f6f2; }
+.tile-64 { background-color: #f65e3b; color: #f9f6f2; }
+.tile-128 { background-color: #edcf72; color: #f9f6f2; }
+.tile-256 { background-color: #edcc61; color: #f9f6f2; }
+.tile-512 { background-color: #edc850; color: #f9f6f2; }
+.tile-1024 { background-color: #edc53f; color: #f9f6f2; }
+.tile-2048 { background-color: #edc22e; color: #f9f6f2; }
+
+/* Animation for new tiles */
+.new-tile {
+  animation: scaleUp 0.2s ease;
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
+/* Move and Merge Animations */
+.move {
+  animation: moveAnimation 0.1s ease;
+}
+
+.merge {
+  animation: mergeAnimation 0.1s ease;
+}
+
+@keyframes moveAnimation {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(5px, 5px); } /* Adjust values for effect */
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes mergeAnimation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); } /* Adjust values for effect */
+  100% { transform: scale(1); }
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.8em;
+  color: #888; /* Slightly lighter footer text */
+}
+
+/* Style for the game over overlay */
+#game-over-overlay {
+  position: fixed; 
+  top: 21px;;
+  /* top: 0; */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Prevent interaction when hidden */
+  transition: opacity 0.5s ease; /* Smooth fade-in */
+}
+
+#game-over-message {
+  background-color: #00000075; 
+  padding: 134px 89px;
+  /* padding: 30px 50px; */
+  border-radius: 10px;
+  text-align: center;
+  font-size: 2em;
+  /* font-size: 1.5em; */
+  color: white; 
+}
+
+
+/* CSS */
+.button-81 {
+  background-color: #ffffff75;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  /* box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25); */
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:hover {
+  background-color: #23232374;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+}

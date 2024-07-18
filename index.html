@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cool 2048</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="game-title">2048</div>
+        <button class="reload-button" onclick="reloadGame()">↻</button>
+        <div class="score-container">
+          <div>Score: <span class="score">0</span></div>
+          <div>Best: <span class="best">0</span></div>
+        </div>
+      </header>
+    
+        <div id="game-board"></div>
+    
+        <footer>
+          Join the numbers and get to the 2048 tile!
+        </footer>
+
+    <div id="game-over-overlay">
+        <div id="game-over-message">
+          <h2 style: margin-top: 10px>Game Over!</h2>
+          <!-- <p>No more moves left!</p> -->
+          <button class="button-81" onclick="reloadGame()">Try Again</button>
+        </div>
+      </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
