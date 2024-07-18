@@ -22,6 +22,11 @@ header {
   color: white; /* White text color for header */
 }
 
+.game-logo { /* Or any class name you prefer */
+  width: 150px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+} 
+
 .game-title {
   font-size: 2em;
   font-weight: bold; /* Make the title bold */
@@ -69,6 +74,10 @@ header {
   font-size: 2em;
   font-weight: bold;
   transition: all 0.1s ease;
+}
+
+.tile-0 { /* Style for empty tiles */
+  background-color: #969696; /* Light beige color */ 
 }
 
 /* Example tile colors */

@@ -90,15 +90,27 @@ function isGameOver() {
 document.addEventListener('keydown', (event) => {
   switch (event.key) {
     case 'ArrowUp':
+    case 'w':
+    case 'W':
+    case '8':  // Numpad 8
       moveUp();
       break;
     case 'ArrowDown':
+    case 's':
+    case 'S':
+    case '2':  // Numpad 2
       moveDown();
       break;
     case 'ArrowLeft':
+    case 'a': 
+    case 'A':
+    case '4':  // Numpad 4
       moveLeft();
       break;
     case 'ArrowRight':
+    case 'd':
+    case 'D':
+    case '6':  // Numpad 6
       moveRight();
       break;
   }
@@ -131,6 +143,8 @@ function renderBoard(isNewTile = false) {
           }, 200);
         }
       }
+      tileElement.classList.add("tile-0"); 
+      
       gridContainer.appendChild(tileElement);
     }
   }
