@@ -7,8 +7,10 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  margin: 0;
+  margin: 0; 
 }
+
+
 
 header {
   display: flex;
@@ -187,12 +189,7 @@ footer {
   color: #fff;
 }
 
-@media (min-width: 768px) {
-  .button-81 {
-    font-size: 1.125rem;
-    padding: 1rem 2rem;
-  }
-}
+
 
 .overlay { 
   position: fixed;
@@ -236,5 +233,4 @@ footer {
   color: white; 
   
 }
-
 
