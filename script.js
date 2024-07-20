@@ -10,6 +10,11 @@ bestElement.textContent = bestScore;
 
 const gameOverOverlay = document.getElementById("game-over-overlay"); 
 
+// let gameWon = false; // A flag to track if the game has been won
+let gameWon = 0; // A flag to track if the game has been won
+let gamePaused = false; // A flag to track if the game is paused
+const winModal = document.getElementById("win-modal");
+
 function initializeGrid() {
   grid = [
     [0, 0, 0, 0],
@@ -39,8 +44,12 @@ function updateScore(newScore) {
   }
 }
 
+// Reset gameWon when the reload button is clicked
 function reloadGame() {
-  initializeGrid(); 
+  // gameWon = false; // Reset gameWon here
+  gameWon = 0; // Reset gameWon here
+  gamePaused = false;
+  initializeGrid();
 }
 
 function addRandomTile() {
@@ -87,7 +96,76 @@ function isGameOver() {
   return true; // Game is over
 }
 
+
+// Function to check for win condition
+function checkWin() {
+  // if (gameWon) { 
+    if (gameWon > 0) { 
+    // gamePaused = false;
+    return true; // Don't show the win modal again
+  }
+
+  for (let row = 0; row < 4; row++) {
+    for (let col = 0; col < 4; col++) {
+      if (grid[row][col] === 2048) {
+
+          // 🎉 Trigger Confetti here 🎉
+        var duration = 15 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+          var timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          // since particles fall down, start a bit higher than random
+          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+          confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        }, 250);
+
+        winModal.style.opacity = 1;
+        winModal.style.pointerEvents = 'auto';
+        // gameWon = true; // Set the flag to indicate the game is won
+        gameWon = 1;
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// Function to handle 'Keep Playing'
+function continuePlaying() {
+  gamePaused = false;
+  winModal.style.opacity = 0;
+  winModal.style.pointerEvents = 'none';
+}
+
+// Function to handle 'End Game'
+function endGame() {
+  // You can either reset the game here or display a final score
+  // For now, let's reset:
+  // gameWon = false; // Reset gameWon here
+  gameWon = 0;
+  gamePaused = false;
+  initializeGrid(); 
+  winModal.style.opacity = 0;
+  winModal.style.pointerEvents = 'none'; 
+}
+
 document.addEventListener('keydown', (event) => {
+  if (gamePaused || gameWon === 1) {
+    gameWon = 2;
+    return; // Don't process key presses if the game is paused
+  }
   switch (event.key) {
     case 'ArrowUp':
     case 'w':
@@ -116,10 +194,14 @@ document.addEventListener('keydown', (event) => {
   }
   renderBoard();
 
-  // Check for game over after every move
-  if (isGameOver()) {
-    // You might want to add a more prominent game over message here
+  // Check for game over or win 
+  // if (!checkWin() && isGameOver()) {
+    if (isGameOver()) {
     console.log('Game Over!');
+    // ... (Your Game Over logic) ...
+  // } else if (gamcheckWin() && !gamePaused) { // Check if the game was already won
+  } else if (checkWin() && gameWon === 1) { // Check if the game was already won
+    gamePaused = true; // Pause the game
   }
 });
 
