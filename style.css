@@ -1,7 +1,7 @@
 
 body {
-  font-family: 'Helvetica Neue', sans-serif, sans-serif;
-  background-color: #202020; /* Soft off-white background */
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #202020;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,28 +16,29 @@ header {
   align-items: center;
   width: 500px;
   margin-bottom: 20px;
-  background-color: #404040; /* Dark background for header */
-  padding: 10px 20px; /* Add some padding to the header */
-  border-radius: 10px; /* Rounded corners for header */
-  color: white; /* White text color for header */
+  background-color: #404040; 
+  padding: 10px 20px; 
+  border-radius: 10px;
+  color: white; 
 }
 
-.game-logo { /* Or any class name you prefer */
-  width: 120px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
+.game-logo {
+  width: 140px;
+  height: auto;
 } 
 
 .game-title {
   font-size: 2em;
-  font-weight: bold; /* Make the title bold */
+  font-weight: bold;
 }
 
 .reload-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 1.5em;
-  color: white; /* White reload button */
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
 }
 
 .score-container {
@@ -47,14 +48,14 @@ header {
 
 .score,
 .best {
-  background-color: #202020; /* Darker background for score */
+  background-color: #202020;
   padding: 8px 15px;
   border-radius: 5px;
-  color: white; /* White score text */
+  color: white; 
 }
 
 #game-board {
-  background-color: #404040; /* Dark background for the game board */
+  background-color: #404040; 
   border-radius: 15px;
   padding: 10px;
 }
@@ -77,7 +78,7 @@ header {
 }
 
 .tile-0 { /* Style for empty tiles */
-  background-color: #969696; /* Light beige color */ 
+  background-color: #969696; 
 }
 
 /* Example tile colors */
@@ -114,20 +115,20 @@ header {
 
 @keyframes moveAnimation {
   0% { transform: translate(0, 0); }
-  50% { transform: translate(5px, 5px); } /* Adjust values for effect */
+  50% { transform: translate(5px, 5px); }
   100% { transform: translate(0, 0); }
 }
 
 @keyframes mergeAnimation {
   0% { transform: scale(1); }
-  50% { transform: scale(1.1); } /* Adjust values for effect */
+  50% { transform: scale(1.1); } 
   100% { transform: scale(1); }
 }
 
 footer {
   margin-top: 20px;
   font-size: 0.8em;
-  color: #888; /* Slightly lighter footer text */
+  color: #888; 
 }
 
 /* Style for the game over overlay */
@@ -138,13 +139,13 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0); /* Semi-transparent black overlay */
+  background-color: rgba(0, 0, 0, 0); 
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0; /* Initially hidden */
-  pointer-events: none; /* Prevent interaction when hidden */
-  transition: opacity 0.5s ease; /* Smooth fade-in */
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity 0.5s ease; 
 }
 
 #game-over-message {
@@ -158,8 +159,6 @@ footer {
   color: white; 
 }
 
-
-/* CSS */
 .button-81 {
   background-color: #ffffff75;
   border: 0 solid #e2e8f0;
@@ -195,9 +194,7 @@ footer {
   }
 }
 
-/* ... Your existing CSS ... */
-
-.overlay { /* Common styles for overlays */
+.overlay { 
   position: fixed;
   top: 0;
   left: 0;
@@ -219,19 +216,16 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0); /* Semi-transparent black overlay */
+    background-color: rgba(0, 0, 0, 0); 
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Initially hidden */
-    pointer-events: none; /* Prevent interaction when hidden */
-    transition: opacity 0.5s ease; /* Smooth fade-in */
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.5s ease; 
 }
   
-
-/* #win-modal {  */
 #win-message {
-  /* ... (Similar styles as your game-over-overlay) ... */
   background-color: #00000075; 
   padding: 98.5px 62.2px;
   /* padding: 30px 50px; */
