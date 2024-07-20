@@ -19,7 +19,10 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 500px;
+  width: 95%;  /* Adjusted for mobile */
+  flex-wrap: wrap;       /* Allow header elements to wrap */
+  margin: 10px auto;    /* Adjusted for mobile */
+  padding: 10px; 
   margin-bottom: 20px;
   background-color: #404040; 
   padding: 10px 20px; 
@@ -35,20 +38,27 @@ header {
 .game-title {
   font-size: 2em;
   font-weight: bold;
+  margin-bottom: 10px;   /* Add space below title on mobile */
 }
 
 .reload-button {
   background-color: transparent;
+  border: 0 solid #e2e8f0;
   border: none;
   cursor: pointer;
   font-size: 3em;
   font-weight: bold;
   color: white;
+  margin: -20px 0px 0px 0px;
 }
 
 .score-container {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;       /* Allow score elements to wrap */
+  justify-content: center; /* Center score elements */
+  width: 100%;           /* Take full width on mobile */
+  margin-top: 20px;     /* Add space above score on mobile */
 }
 
 .score,
@@ -63,13 +73,15 @@ header {
   background-color: #404040; 
   border-radius: 15px;
   padding: 10px;
+  width: auto;               /* Take up most of the screen width */
+  /* max-width: 400px; */
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 100px);
   grid-template-rows: repeat(4, 100px);
-  gap: 10px;
+  gap: 8px;
 }
 
 .tile {
@@ -139,8 +151,7 @@ footer {
 /* Style for the game over overlay */
 #game-over-overlay {
   position: fixed; 
-  top: 29.3px;
-  /* top: 0; */
+  top: 64.5px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -155,12 +166,10 @@ footer {
 
 #game-over-message {
   background-color: #00000075; 
-  padding: 132.7px 89px;
-  /* padding: 30px 50px; */
+  padding: 130px 86px;
   border-radius: 15px;
   text-align: center;
   font-size: 2em;
-  /* font-size: 1.5em; */
   color: white; 
 }
 
@@ -192,8 +201,6 @@ footer {
   color: #fff;
 }
 
-
-
 .overlay { 
   position: fixed;
   top: 0;
@@ -211,8 +218,7 @@ footer {
 
 #win-modal {
     position: fixed; 
-    top: 29.3px;
-    /* top: 0; */
+    top: 64.3px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -227,13 +233,71 @@ footer {
   
 #win-message {
   background-color: #00000075; 
-  padding: 98.5px 62.2px;
-  /* padding: 30px 50px; */
+  padding: 95.6px 68.3px;
   border-radius: 15px;
   text-align: center;
   font-size: 2em;
-  /* font-size: 1.5em; */
-  color: white; 
-  
+  color: white;  
 }
 
+/* Media Query for Larger Screens (Tablets and Desktops) */
+@media (min-width: 768px) { 
+  /* ... your existing styles for larger screens ... */
+
+  header {
+    flex-wrap: nowrap;    /* Prevent header wrap on larger screens */
+    width: 60%;           /* Adjust width back for larger screens */
+    margin: 20px auto;    /* Adjust margin back for larger screens */
+    padding: 10px 20px;    /* Adjust padding back for larger screens */
+  }
+
+  .game-title {
+    font-size: 3em;        /* Larger font size for larger screens */
+    margin-bottom: 0;      /* Remove extra space below title */
+  }
+
+  .reload-button {
+    font-size: 2.5em;        /* Larger reload button for larger screens */
+    margin: -20px 0px 0px 0px;
+  }
+
+  .score-container {
+    flex-wrap: nowrap;     /* Prevent score wrap on larger screens */
+    justify-content: flex-start; /* Default alignment for larger screens */
+    width: auto;            /* Reset width for larger screens */
+    /* margin-top: 0; */
+    height: 50%;
+  }
+
+  #game-board {
+    width: 60%;            /* Adjust width back for larger screens */
+    /* max-width: none;       //Remove max-width restriction for larger screens */
+    max-width: fit-content;
+  }
+
+  .grid-container {
+    /* ... your existing styles for larger screens ... */
+    gap: 10px;              /* Reset gap for larger screens */ 
+  }
+
+  .tile {
+    /* ... your existing styles for larger screens ... */
+    font-size: 2.5em;        /* Larger font size for larger screens */
+  } 
+  
+  #game-over-overlay {
+    top: 43.3px
+  }
+
+  #game-over-message {
+    padding: 132.8px 89px;
+  }
+
+  #win-modal {
+    top: 43.2px;
+  }
+
+  #win-message {
+  padding: 98.7px 71.3px;
+  }
+}
