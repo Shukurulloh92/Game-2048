@@ -3,10 +3,17 @@ const gridContainer = document.getElementById("game-board");
 let grid = [];
 let score = 0;
 
+// Variables to track touch movement
+let touchStartX = 0;
+let touchStartY = 0;
+
 const scoreElement = document.querySelector(".score");
 const bestElement = document.querySelector(".best");
 let bestScore = localStorage.getItem("bestScore") || 0;
 bestElement.textContent = bestScore;
+
+gridContainer.addEventListener('touchstart', handleTouchStart, false);
+gridContainer.addEventListener('touchmove', handleTouchMove, false);
 
 const gameOverOverlay = document.getElementById("game-over-overlay"); 
 
@@ -159,6 +166,54 @@ function endGame() {
   initializeGrid(); 
   winModal.style.opacity = 0;
   winModal.style.pointerEvents = 'none'; 
+}
+
+
+function handleTouchStart(event) {
+  // Store the starting touch position
+  touchStartX = event.touches[0].clientX;
+  touchStartY = event.touches[0].clientY;
+}
+
+function handleTouchMove(event) {
+  if (!gamePaused) { // Only process swipes if the game isn't paused
+
+      // Calculate the touch movement
+      const touchEndX = event.touches[0].clientX;
+      const touchEndY = event.touches[0].clientY;
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      // Determine the swipe direction
+      if (Math.abs(deltaX) > Math.abs(deltaY)) { 
+          // Horizontal swipe
+          if (deltaX > 0) {
+              moveRight(); // Swipe right
+          } else {
+              moveLeft();  // Swipe left
+          }
+      } else {
+          // Vertical swipe
+          if (deltaY > 0) {
+              moveDown(); // Swipe down
+          } else {
+              moveUp();   // Swipe up
+          }
+      }
+
+      // Prevent default touch behavior (scrolling)
+      event.preventDefault();
+
+      // Render the board after each swipe
+      renderBoard();
+
+      // Check for game over or win after processing the swipe
+      if (isGameOver()) {
+          console.log('Game Over!');
+      } else if (checkWin() && gameWon === 1) { 
+          gamePaused = true; 
+      }
+  }
 }
 
 document.addEventListener('keydown', (event) => {
