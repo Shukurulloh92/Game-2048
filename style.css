@@ -19,13 +19,13 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 70%;  /* Adjusted for mobile */
-  flex-wrap: wrap;       /* Allow header elements to wrap */
-  margin: 10px auto;    /* Adjusted for mobile */
-  padding: 10px; 
+  width: 75%;
+  flex-wrap: wrap;
+  /* margin: 10px auto;
+  padding: 10px;  */
   margin-bottom: 20px;
   background-color: #404040; 
-  padding: 10px 20px; 
+  padding: 10px 10px; 
   border-radius: 10px;
   color: white; 
 }
@@ -35,30 +35,24 @@ header {
   height: auto;
 } 
 
-.game-title {
-  font-size: 2em;
-  font-weight: bold;
-  margin-bottom: 10px;   /* Add space below title on mobile */
-}
-
 .reload-button {
   background-color: transparent;
   border: 0 solid #e2e8f0;
   border: none;
   cursor: pointer;
-  font-size: 3em;
-  font-weight: bold;
   color: white;
   margin: -20px 0px 0px 0px;
+  height: 50px;
+  width: 40px;
 }
 
 .score-container {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;       /* Allow score elements to wrap */
-  justify-content: center; /* Center score elements */
-  width: 100%;           /* Take full width on mobile */
-  margin-top: 20px;     /* Add space above score on mobile */
+  gap: 10px;
+  flex-wrap: wrap;      
+  justify-content: center; 
+  width: 100%;
+  margin-top: 20px;
 }
 
 .score,
@@ -73,15 +67,15 @@ header {
   background-color: #404040; 
   border-radius: 15px;
   padding: 8px;
-  width: auto;               /* Take up most of the screen width */
-  /* max-width: 400px; */
+  width: auto;
+  touch-action: none; 
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 80px);
-  grid-template-rows: repeat(4, 80px);
-  gap: 8px;
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: repeat(4, 70px);
+  gap: 7px;
 }
 
 .tile {
@@ -151,7 +145,7 @@ footer {
 /* Style for the game over overlay */
 #game-over-overlay {
   position: fixed; 
-  top: 64.5px;
+  top: 55.5px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -166,7 +160,7 @@ footer {
 
 #game-over-message {
   background-color: #00000075; 
-  padding: 88px 43.7px;
+  padding: 66px 22.5px;
   border-radius: 15px;
   text-align: center;
   font-size: 2em;
@@ -185,7 +179,7 @@ footer {
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1;
-  padding: 1rem 1.6rem;
+  padding: 0.9rem 1.4rem;
   text-align: center;
   text-decoration: none #0d172a solid;
   text-decoration-thickness: auto;
@@ -218,7 +212,7 @@ footer {
 
 #win-modal {
     position: fixed; 
-    top: 64.3px;
+    top: 55.8px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -233,10 +227,10 @@ footer {
   
 #win-message {
   background-color: #00000075; 
-  padding: 55px 27px;
+  padding: 59px 18.3px;
   border-radius: 15px;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.5em;
   color: white;  
 }
 
@@ -249,11 +243,6 @@ footer {
     width: 60%;           /* Adjust width back for larger screens */
     margin: 20px auto;    /* Adjust margin back for larger screens */
     padding: 10px 20px;    /* Adjust padding back for larger screens */
-  }
-
-  .game-title {
-    font-size: 3em;        /* Larger font size for larger screens */
-    margin-bottom: 0;      /* Remove extra space below title */
   }
 
   .reload-button {
@@ -289,7 +278,7 @@ footer {
   } 
   
   #game-over-overlay {
-    top: 43.3px
+    top: 43.4px
   }
 
   #game-over-message {
@@ -297,10 +286,14 @@ footer {
   }
 
   #win-modal {
-    top: 43.2px;
+    top: 43.5px;
   }
 
   #win-message {
   padding: 98.7px 71.3px;
+  font-size: 2em;
+  }
+  .button-81 {
+    padding: 1rem 1.6rem;
   }
 }

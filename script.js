@@ -2,25 +2,20 @@
 const gridContainer = document.getElementById("game-board");
 let grid = [];
 let score = 0;
-
-// Variables to track touch movement
 let touchStartX = 0;
 let touchStartY = 0;
+let gameWon = 0;
+let gamePaused = false;
 
 const scoreElement = document.querySelector(".score");
 const bestElement = document.querySelector(".best");
+const gameOverOverlay = document.getElementById("game-over-overlay"); 
+const winModal = document.getElementById("win-modal");
 let bestScore = localStorage.getItem("bestScore") || 0;
 bestElement.textContent = bestScore;
 
 gridContainer.addEventListener('touchstart', handleTouchStart, false);
 gridContainer.addEventListener('touchmove', handleTouchMove, false);
-
-const gameOverOverlay = document.getElementById("game-over-overlay"); 
-
-// let gameWon = false; // A flag to track if the game has been won
-let gameWon = 0; // A flag to track if the game has been won
-let gamePaused = false; // A flag to track if the game is paused
-const winModal = document.getElementById("win-modal");
 
 function initializeGrid() {
   grid = [
@@ -35,7 +30,6 @@ function initializeGrid() {
   addRandomTile();
   renderBoard();
 
-  // Hide the game over overlay when starting a new game
   gameOverOverlay.style.opacity = 0;
   gameOverOverlay.style.pointerEvents = 'none';
 }
@@ -51,10 +45,8 @@ function updateScore(newScore) {
   }
 }
 
-// Reset gameWon when the reload button is clicked
 function reloadGame() {
-  // gameWon = false; // Reset gameWon here
-  gameWon = 0; // Reset gameWon here
+  gameWon = 0;
   gamePaused = false;
   initializeGrid();
 }
@@ -72,18 +64,15 @@ function addRandomTile() {
   if (emptyCells.length > 0) {
     const randomIndex = Math.floor(Math.random() * emptyCells.length);
     const { row, col } = emptyCells[randomIndex];
-    grid[row][col] = Math.random() < 0.9 ? 2 : 4;
+    grid[row][col] = Math.random() < 0.9 ? 512 : 512;
     renderBoard(true);
   } else {
-    // No empty cells - check if game over
     if (isGameOver()) {
       gameOverOverlay.style.opacity = 1; 
       gameOverOverlay.style.pointerEvents = 'auto'; 
     }
   }
 }
-
-// ... rest of your script.js code ...
 
 function isGameOver() {
   for (let row = 0; row < 4; row++) {
@@ -93,23 +82,18 @@ function isGameOver() {
         (col < 3 && grid[row][col] === grid[row][col + 1]) ||
         (row > 0 && grid[row][col] === grid[row - 1][col]) ||
         (row < 3 && grid[row][col] === grid[row + 1][col])) {
-        return false; // A move is still possible
+        return false;
       }
     }
   }
-  // No possible moves found 
   gameOverOverlay.style.opacity = 1;
   gameOverOverlay.style.pointerEvents = 'auto';
-  return true; // Game is over
+  return true;
 }
 
-
-// Function to check for win condition
 function checkWin() {
-  // if (gameWon) { 
     if (gameWon > 0) { 
-    // gamePaused = false;
-    return true; // Don't show the win modal again
+    return true;
   }
 
   for (let row = 0; row < 4; row++) {
@@ -133,14 +117,12 @@ function checkWin() {
           }
 
           var particleCount = 50 * (timeLeft / duration);
-          // since particles fall down, start a bit higher than random
           confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
           confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
         }, 250);
 
         winModal.style.opacity = 1;
         winModal.style.pointerEvents = 'auto';
-        // gameWon = true; // Set the flag to indicate the game is won
         gameWon = 1;
         return true;
       }
@@ -149,18 +131,13 @@ function checkWin() {
   return false;
 }
 
-// Function to handle 'Keep Playing'
 function continuePlaying() {
   gamePaused = false;
   winModal.style.opacity = 0;
   winModal.style.pointerEvents = 'none';
 }
 
-// Function to handle 'End Game'
 function endGame() {
-  // You can either reset the game here or display a final score
-  // For now, let's reset:
-  // gameWon = false; // Reset gameWon here
   gameWon = 0;
   gamePaused = false;
   initializeGrid(); 
@@ -170,93 +147,82 @@ function endGame() {
 
 
 function handleTouchStart(event) {
-  // Store the starting touch position
   touchStartX = event.touches[0].clientX;
   touchStartY = event.touches[0].clientY;
 }
 
 function handleTouchMove(event) {
-  if (!gamePaused) { // Only process swipes if the game isn't paused
-
-      // Calculate the touch movement
+  if (gamePaused || gameWon === 1) {
+    gameWon = 2;
+    return;
+  }
       const touchEndX = event.touches[0].clientX;
       const touchEndY = event.touches[0].clientY;
       const deltaX = touchEndX - touchStartX;
       const deltaY = touchEndY - touchStartY;
 
-      // Determine the swipe direction
       if (Math.abs(deltaX) > Math.abs(deltaY)) { 
-          // Horizontal swipe
           if (deltaX > 0) {
-              moveRight(); // Swipe right
+              moveRight();
           } else {
-              moveLeft();  // Swipe left
+              moveLeft();
           }
       } else {
-          // Vertical swipe
           if (deltaY > 0) {
-              moveDown(); // Swipe down
+              moveDown();
           } else {
-              moveUp();   // Swipe up
+              moveUp();
           }
       }
 
-      // Prevent default touch behavior (scrolling)
       event.preventDefault();
 
-      // Render the board after each swipe
       renderBoard();
 
-      // Check for game over or win after processing the swipe
       if (isGameOver()) {
           console.log('Game Over!');
       } else if (checkWin() && gameWon === 1) { 
           gamePaused = true; 
       }
-  }
 }
 
 document.addEventListener('keydown', (event) => {
   if (gamePaused || gameWon === 1) {
     gameWon = 2;
-    return; // Don't process key presses if the game is paused
+    return;
   }
   switch (event.key) {
     case 'ArrowUp':
     case 'w':
     case 'W':
-    case '8':  // Numpad 8
+    case '8':
       moveUp();
       break;
     case 'ArrowDown':
     case 's':
     case 'S':
-    case '2':  // Numpad 2
+    case '2':
       moveDown();
       break;
     case 'ArrowLeft':
     case 'a': 
     case 'A':
-    case '4':  // Numpad 4
+    case '4':
       moveLeft();
       break;
     case 'ArrowRight':
     case 'd':
     case 'D':
-    case '6':  // Numpad 6
+    case '6':
       moveRight();
       break;
   }
   renderBoard();
 
-  // Check for game over or win 
-  // if (!checkWin() && isGameOver()) {
     if (isGameOver()) {
     console.log('Game Over!');
-    // ... (Your Game Over logic) ...
-  // } else if (gamcheckWin() && !gamePaused) { // Check if the game was already won
-  } else if (checkWin() && gameWon === 1) { // Check if the game was already won
-    gamePaused = true; // Pause the game
+  } else if (checkWin() && gameWon === 1) {
+    gamePaused = true;
   }
 });
 
@@ -279,9 +245,19 @@ function renderBoard(isNewTile = false) {
             tileElement.classList.remove("new-tile");
           }, 200);
         }
+
+        if (tileValue.toString().length > 4) { 
+          tileElement.style.fontSize = '1.5em';  
+        } else if (tileValue.toString().length > 3) { 
+          tileElement.style.fontSize = '1.8em'; 
+        } else if (tileValue.toString().length > 2) { 
+          tileElement.style.fontSize = '2.1em'; 
+        } else {
+          tileElement.style.fontSize = '2.5em';   
+        }
       }
       tileElement.classList.add("tile-0"); 
-      
+
       gridContainer.appendChild(tileElement);
     }
   }
@@ -383,7 +359,7 @@ function moveRight() {
 
         if (currentCol < 3 && grid[row][currentCol + 1] === grid[row][currentCol]) {
           grid[row][currentCol + 1] *= 2;
-          updateScore(score + grid[row][currentCol + 1]); // Update score on merge
+          updateScore(score + grid[row][currentCol + 1]);
           grid[row][currentCol] = 0;
           moved = true;
         }
