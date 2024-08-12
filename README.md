@@ -1,6 +1,6 @@
 # 2048 Game
 
-A simple implementation of the 2048 game in JavaScript, HTML and CSS.
+This is an implementation of the popular 2048 game, created with Gemini AI using JavaScript, HTML and CSS.
 
 ## Play
 
