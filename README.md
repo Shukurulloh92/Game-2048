@@ -12,4 +12,4 @@ Open `index.html` in your browser. Use the arrow keys on your keyboard to move t
 
 ## Screenshot
 
-![Game screenshot](screenshots/screenshot.png)
+![Game screenshot](screenshot.png)
