@@ -100,7 +100,7 @@ function checkWin() {
     for (let col = 0; col < 4; col++) {
       if (grid[row][col] === 2048) {
 
-          // 🎉 Trigger Confetti here 🎉
+          // 🎉 Trigger Confetti 🎉
         var duration = 15 * 1000;
         var animationEnd = Date.now() + duration;
         var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -278,7 +278,7 @@ function moveUp() {
 
         if (currentRow > 0 && grid[currentRow - 1][col] === grid[currentRow][col]) {
           grid[currentRow - 1][col] *= 2;
-          updateScore(score + grid[currentRow - 1][col]); // Update score on merge
+          updateScore(score + grid[currentRow - 1][col]);
           grid[currentRow][col] = 0;
           moved = true;
         }
@@ -305,7 +305,7 @@ function moveDown() {
 
         if (currentRow < 3 && grid[currentRow + 1][col] === grid[currentRow][col]) {
           grid[currentRow + 1][col] *= 2;
-          updateScore(score + grid[currentRow + 1][col]); // Update score on merge
+          updateScore(score + grid[currentRow + 1][col]);
           grid[currentRow][col] = 0;
           moved = true;
         }
@@ -332,7 +332,7 @@ function moveLeft() {
 
         if (currentCol > 0 && grid[row][currentCol - 1] === grid[row][currentCol]) {
           grid[row][currentCol - 1] *= 2;
-          updateScore(score + grid[row][currentCol - 1]); // Update score on merge
+          updateScore(score + grid[row][currentCol - 1]);
           grid[row][currentCol] = 0;
           moved = true;
         }

@@ -20,8 +20,6 @@ header {
   align-items: center;
   width: 90%;
   flex-wrap: wrap;
-  /* margin: 10px auto;
-  padding: 10px;  */
   margin-bottom: 20px;
   background-color: #404040; 
   padding: 10px 10px; 
@@ -41,8 +39,6 @@ header {
   cursor: pointer;
   color: white;
   margin: -10px 0px 0px 0px;
-  /* height: 50px;
-  width: 40px; */
 }
 
 .score-container {
@@ -87,11 +83,10 @@ header {
   transition: all 0.1s ease;
 }
 
-.tile-0 { /* Style for empty tiles */
+.tile-0 {
   background-color: #969696; 
 }
 
-/* Example tile colors */
 .tile-2 { background-color: #eee4da; color: #776e65; }
 .tile-4 { background-color: #ede0c8; color: #776e65; }
 .tile-8 { background-color: #f2b179; color: #f9f6f2; }
@@ -117,7 +112,6 @@ header {
   100% { transform: scale(1); }
 }
 
-/* Move and Merge Animations */
 .move {
   animation: moveAnimation 0.1s ease;
 }
@@ -144,7 +138,6 @@ footer {
   color: #888; 
 }
 
-/* Style for the game over overlay */
 #game-over-overlay {
   position: fixed; 
   top: 55px;
@@ -186,7 +179,6 @@ footer {
   text-decoration: none #0d172a solid;
   text-decoration-thickness: auto;
   transition: all .1s cubic-bezier(.4, 0, .2, 1);
-  /* box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25); */
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -238,45 +230,40 @@ footer {
 
 /* Media Query for Larger Screens (Tablets and Desktops) */
 @media (min-width: 768px) { 
-  /* ... your existing styles for larger screens ... */
 
   header {
-    flex-wrap: nowrap;    /* Prevent header wrap on larger screens */
-    width: 60%;           /* Adjust width back for larger screens */
-    margin: 20px auto;    /* Adjust margin back for larger screens */
-    padding: 10px 20px;    /* Adjust padding back for larger screens */
+    flex-wrap: nowrap; 
+    width: 60%; 
+    margin: 20px auto; 
+    padding: 10px 20px; 
   }
 
   .reload-button {
-    font-size: 2.5em;        /* Larger reload button for larger screens */
+    font-size: 2.5em;
     margin: -12px 0px 0px 0px;
   }
 
   .score-container {
-    flex-wrap: nowrap;     /* Prevent score wrap on larger screens */
-    justify-content: flex-start; /* Default alignment for larger screens */
-    width: auto;            /* Reset width for larger screens */
-    /* margin-top: 0; */
+    flex-wrap: nowrap; 
+    justify-content: flex-start;
+    width: auto;       
     height: 50%;
   }
 
   #game-board {
-    width: 60%;            /* Adjust width back for larger screens */
+    width: 60%; 
     padding: 10px;
-    /* max-width: none;       //Remove max-width restriction for larger screens */
     max-width: fit-content;
   }
 
   .grid-container {
-    /* ... your existing styles for larger screens ... */
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(4, 100px);
-    gap: 10px;              /* Reset gap for larger screens */ 
+    gap: 10px; 
   }
 
   .tile {
-    /* ... your existing styles for larger screens ... */
-    font-size: 2.5em;        /* Larger font size for larger screens */
+    font-size: 2.5em; 
   } 
   
   #game-over-overlay {
