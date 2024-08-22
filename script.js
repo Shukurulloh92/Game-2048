@@ -64,7 +64,7 @@ function addRandomTile() {
   if (emptyCells.length > 0) {
     const randomIndex = Math.floor(Math.random() * emptyCells.length);
     const { row, col } = emptyCells[randomIndex];
-    grid[row][col] = Math.random() < 0.9 ? 2048 : 2048;
+    grid[row][col] = Math.random() < 0.9 ? 2 : 4;
     renderBoard(true);
   } else {
     if (isGameOver()) {
